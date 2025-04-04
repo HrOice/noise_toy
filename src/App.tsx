@@ -108,8 +108,8 @@ const App: React.FC = () => {
             storageService.resetData();
             const data = storageService.getData();
             setPlants(data.plants);
-            setSettings(data.settings);
-            settingRef.current = data.settings
+            // setSettings(data.settings);
+            // settingRef.current = data.settings
             setSeconds(0);
         }
     };
