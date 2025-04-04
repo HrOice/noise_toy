@@ -8,8 +8,8 @@ export interface StorageData {
     maxSeconds: number;
     maxDecibel: number;
     alertThreshold: number;
-    treesToFlower: number;
-    seedlingsToTree: number;
+    seedlingsToTree: number;  // 新增：多少个树苗变成树
+    treesToFlower: number;    // 新增：多少棵树变成花
   };
 }
 
@@ -17,8 +17,8 @@ export const defaultSettings: StorageData['settings'] = {
   maxSeconds: 5,
   maxDecibel: 20,
   alertThreshold: 15,
-  treesToFlower: 2,
-seedlingsToTree: 2,
+  seedlingsToTree: 5,     // 默认5个树苗变成一棵树
+  treesToFlower: 5        // 默认5棵树变成一朵花
 };
 
 export const storageService = {

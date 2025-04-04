@@ -26,18 +26,23 @@ const App: React.FC = () => {
     const settingRef = useRef(settings);
     const timerRef = useRef<NodeJS.Timeout>(null);
     const isAddingPlant = useRef(false);  // 新增：用于防止重复添加植物
+    const [isLoaded, setIsLoaded] = useState(false);  // 添加加载标志
 
     // 在组件挂载时加载植物数据
     useEffect(() => {
         const data = storageService.getData();
         setPlants(data.plants);
         setSettings(data.settings);
+        setIsLoaded(true);  // 标记数据已加载
     }, []);
 
     // 当植物更新时保存数据
     useEffect(() => {
-        storageService.saveData({ plants, settings });
-    }, [plants, settings]);
+        if (isLoaded) {  // 只在加载完成后保存数据
+            storageService.saveData({ plants, settings });
+        }
+    }, [plants, settings, isLoaded]);
+
 
     useEffect(() => {
         if (decibel >= settingRef.current.alertThreshold) {
@@ -69,19 +74,20 @@ const App: React.FC = () => {
     }, [decibel, settings.maxSeconds, settings.alertThreshold]); // 添加依赖项
 
     const addPlant = () => {
-
         setPlants(prevPlants => {
             // 统计当前植物数量
             const seedlings = prevPlants.filter(p => p.type === 'seedling');
             const trees = prevPlants.filter(p => p.type === 'tree');
+
             // 如果有足够的树，转换为一朵花
-            if (trees.length >= settings.treesToFlower - 1 && seedlings.length >= settings.seedlingsToTree - 1) {
+            if (trees.length >= settingRef.current.treesToFlower - 1 && seedlings.length >= settingRef.current.seedlingsToTree - 1) {
                 // 移除所有树，添加一朵新花
                 const remainingPlants = prevPlants.filter(p => p.type !== 'tree' && p.type !== 'seedling');
                 return [...remainingPlants, { id: generateId(), type: 'flower' }];
             }
+
             // 如果有足够的树苗，转换为一棵树
-            if (seedlings.length >= settings.seedlingsToTree - 1) {
+            if (seedlings.length >= settingRef.current.seedlingsToTree - 1) {
                 // 移除所有树苗，添加一棵新树
                 const remainingPlants = prevPlants.filter(p => p.type !== 'seedling');
                 return [...remainingPlants, { id: generateId(), type: 'tree' }];
@@ -117,12 +123,12 @@ const App: React.FC = () => {
     return (
         <div className="app">
             <div className="header">
-                <button onClick={() => setIsSettingsOpen(true)}>⚙️ 设置</button>
-                <button onClick={handleReset}>🔄 重置花园</button>
+                <button onClick={() => setIsSettingsOpen(true)}>⚙️</button>
+                <button onClick={handleReset}>🔄</button>
             </div>
             <div className="monitor-section">
                 <div className="monitor-title">
-                    🌱 保持安静，让花园慢慢长大吧！
+                    🌱 保持安静，让花园成长
                 </div>
                 <div className="timer-section">
                     <h3>🕒 安静时间</h3>
@@ -137,7 +143,6 @@ const App: React.FC = () => {
                     />
                 </div>
             </div>
-            <h3 className="garden-title">🌺 我的小花园</h3>
             <Garden plants={plants} />
             <Alert alert={alert} />
             <SettingsDialog

@@ -1,175 +1,268 @@
 .app {
-  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
-  padding: 30px;
-  max-width: 800px;
+  padding: 10px;
+  max-width: 100%;
   margin: 0 auto;
-  font-family: 'Comic Sans MS', cursive, sans-serif;
-  border-radius: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  font-family: 'Comic Sans MS', 'Marker Felt', -apple-system, sans-serif;
+  background: linear-gradient(135deg, #f3e5f5 0%, #e8f5e9 100%);
   min-height: 100vh;
-}
-
-.monitor-section {
-  background-color: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  margin: 20px 0;
-}
-
-.monitor-title {
-  text-align: center;
-  color: #666;
-  margin-bottom: 15px;
-  font-size: 1.2em;
-}
-
-.noise-bar {
-  margin: 15px 0;
-  padding: 10px;
-  background-color: #fff5f5;
-  border-radius: 10px;
-}
-
-.bar-container {
-  background-color: #ffe1e1;
-  height: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.bar-fill {
-  background: linear-gradient(45deg, #81c784, #4caf50);
-  height: 100%;
-  transition: width 0.3s ease-in-out;
-}
-
-.bar-fill.warning {
-  background: linear-gradient(45deg, #ff8a80, #ff5252);
-}
-
-.decibel-value {
-  text-align: center;
-  margin-top: 8px;
-  color: #4caf50;
-  font-weight: bold;
-}
-
-.timer {
-  margin: 15px 0;
-  padding: 10px;
-  background-color: #e8f5fe;
-  border-radius: 10px;
-}
-
-.timer-bar {
-  background-color: #d1e8ff;
-  height: 20px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.timer-fill {
-  background: linear-gradient(45deg, #64b5f6, #2196f3);
-  height: 100%;
-  transition: width 0.3s ease-in-out;
-}
-
-.timer-value {
-  text-align: center;
-  margin-top: 8px;
-  color: #5c6bc0;
-  font-weight: bold;
-}
-
-.garden {
-  background: linear-gradient(to bottom, #e8f5e9, #c8e6c9);
-  min-height: 300px;  /* 增加花园高度 */
-  border-radius: 20px;
-  padding: 30px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 25px;  /* 增加植物之间的间距 */
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0 0 30px rgba(0,0,0,0.1);
-  border: 12px solid #a5d6a7;  /* 加粗边框 */
-  margin: 20px 0;
-}
-
-.plant {
-  font-size: 4em;  /* 增大植物大小 */
-  filter: drop-shadow(0 4px 4px rgba(0,0,0,0.2));
-  transition: all 0.3s ease;
-  cursor: pointer;
-  animation: plantBounce 1s ease-in-out infinite alternate;
-}
-
-.plant:hover {
-  transform: translateY(-8px) scale(1.15);
-  filter: drop-shadow(0 8px 8px rgba(0,0,0,0.3));
-}
-
-/* 添加植物轻微晃动动画 */
-@keyframes plantBounce {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(-5px);
-  }
-}
-
-/* 美化标题 */
-.garden-title {
-  text-align: center;
-  font-size: 1.8em;
-  color: #2e7d32;
-  margin: 25px 0;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  font-weight: bold;
-}
-
-.alert {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #ff4444;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
+  flex-direction: column;
 }
 
 .header {
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
-  padding: 10px;
+  gap: 8px;
+  padding: 5px;
+  margin-bottom: 10px;
 }
 
 .header button {
-  background-color: #ff9eb3;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 20px;
-  color: white;
-  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  border: 2px solid #f48fb1;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f8bbd0 0%, #a5d6a7 100%);
+  color: #e91e63;
+  font-size: 20px;
   cursor: pointer;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.2s;
 }
 
 .header button:hover {
-  transform: translateY(-2px);
-  background-color: #ff8da3;
+  transform: translateY(-2px) rotate(10deg);
+  background: linear-gradient(135deg, #f48fb1 0%, #81c784 100%);
+}
+
+.monitor-section {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 12px;
+  border-radius: 12px;
+  border: 3px dashed #81c784;
+  border-right: 3px dashed #f48fb1;
+  border-bottom: 3px dashed #f48fb1;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+  margin-bottom: 10px;
+}
+
+.monitor-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 0.9em;
+  font-weight: 500;
+  padding: 8px;
+  text-shadow: none;
+  -webkit-text-fill-color: initial;
+  background: none;
+}
+
+.timer-section, .noise-section {
+  margin-bottom: 12px;
+}
+
+h3 {
+  font-size: 0.8em;
+  margin: 0 0 8px 0;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.timer-bar {
+  background: #e3f2fd;
+  height: 20px;
+  border-radius: 8px;
+  border: 2px solid #64b5f6;
+  overflow: hidden;
+  position: relative;
+}
+
+.timer-fill {
+  height: 100%;
+  width: 0;
+  background: #2196f3;  /* 使用纯蓝色 */
+  transition: width 0.3s ease-in-out;
+  position: relative;
+  z-index: 2;
+}
+
+.noise-bar {
+  background: #fff8e1; /* 淡黄色背景 */
+  height: 20px;
+  border-radius: 8px;
+  border: 2px solid #ffd54f; /* 黄色边框 */
+  overflow: hidden;
+  position: relative;
+  margin: 8px 0;
+}
+
+.noise-bar.warning {
+  border: 2px solid #ff5252; /* 警告时使用红色边框 */
+}
+
+.timer-bar::after, .noise-bar::after {
+  content: '';  /* 移除之前的emoji */
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.noise-fill.peak {
+  opacity: 0.3;
+  transition: opacity 2s ease-out, width 0.5s ease-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  animation: fadeOut 2s ease-out forwards;  /* 添加淡出动画 */
+}
+
+.noise-fill.current {
+  opacity: 1;
+  position: relative;
+  z-index: 2;
+  transition: width 0.5s ease-out;
+}
+
+.noise-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(45deg, #ffd54f, #ffb300, #ff8f00); /* 使用黄色渐变 */
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite linear;
+  will-change: width;
+}
+
+.noise-fill.warning {
+  background: linear-gradient(45deg, #ff8a80, #ff5252, #d32f2f); /* 警告时使用红色渐变 */
+}
+
+.value-display {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.8em;
+  color: #333;
+  text-shadow: 0 0 2px rgba(255,255,255,0.8);
+  z-index: 3;
+  font-weight: bold;
+  padding: 0 8px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(232, 245, 233, 0.9), rgba(252, 228, 236, 0.9));
+  transition: all 1s ease-out;  /* 同步数值显示的过渡时间 */
+}
+
+.garden {
+  flex: 1;
+  min-height: 120px;
+  padding: 12px;
+  gap: 12px;
+  background: url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2381c784' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6-2.21 0-4-1.79-4-4 0-3.314-2.686-6-6-6-2.21 0-4-1.79-4-4zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E"),
+    #e8f5e9;
+  border: 8px dotted #81c784;
+  border-radius: 12px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,0.1);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;  /* 改为从顶部开始 */
+  align-content: flex-start;  /* 多行时也从顶部开始 */
+  justify-content: flex-start;  /* 从左侧开始 */
+  padding-top: 20px;  /* 增加顶部间距 */
+}
+
+.plant {
+  font-size: 3em;  /* 增大植物大小 */
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation: bounce 2s ease-in-out infinite;  /* 添加跳动动画 */
+  cursor: pointer;
+}
+
+.plant:hover {
+  transform: translateY(-8px) rotate(15deg) scale(1.2);
+  filter: drop-shadow(0 8px 20px rgba(76, 175, 80, 0.3));
+  animation-play-state: paused;  /* 悬停时暂停动画 */
+}
+
+.plant[data-type="seedling"] {
+  color: #4caf50;
+  filter: drop-shadow(0 2px 4px rgba(76, 175, 80, 0.2));
+  animation-delay: -0.3s;
+}
+
+.plant[data-type="flower"] {
+  color: #e91e63;
+  filter: drop-shadow(0 2px 4px rgba(233, 30, 99, 0.2));
+  animation-delay: -0.6s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.alert {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  background: linear-gradient(45deg, #ff8a80, #ff5252);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #ff1744;
+  font-size: 0.95em;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(255,23,68,0.3);
+  animation: fadeIn 0.2s ease;
+  z-index: 1000;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeOut {
+  0% { opacity: 0.3; }
+  100% { opacity: 0; }
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 5px;
+  }
+
+  .monitor-section {
+    padding: 10px;
+  }
+
+  .garden {
+    min-height: 200px;  /* 增加花园高度以适应更大的植物 */
+    gap: 15px;  /* 增加植物之间的间距 */
+  }
+
+  .plant {
+    font-size: 2.5em;  /* 在小屏幕上稍微小一点 */
+  }
 }
 
 .settings-dialog {
@@ -179,24 +272,30 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px) saturate(180%);
   display: flex;
   justify-content: center;
   align-items: center;
-  backdrop-filter: blur(5px);
+  padding: 20px;
+  z-index: 1000;
 }
 
 .settings-content {
-  background: white;
-  padding: 25px;
-  border-radius: 20px;
-  min-width: 300px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  background: linear-gradient(135deg, #fff 0%, #e8f5e9 50%, #fce4ec 100%);
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  border: 3px solid;
+  border-image: linear-gradient(45deg, #81c784, #f48fb1) 1;
 }
 
 .settings-content h2 {
-  color: #4caf50;
+  font-size: 1.3em;
+  margin: 0 0 20px 0;
   text-align: center;
-  margin-bottom: 20px;
+  color: #333;
 }
 
 .form-group {
@@ -204,14 +303,23 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 15px;
+}
+
+.form-group label {
+  color: #666;
+  font-size: 0.9em;
+  flex: 1;
 }
 
 .form-group input {
-  width: 100px;
+  width: 80px;
   padding: 8px;
   border: 2px solid #e0e0e0;
   border-radius: 8px;
-  font-size: 16px;
+  font-size: 14px;
+  text-align: center;
+  background: white;
 }
 
 .dialog-buttons {
@@ -221,15 +329,46 @@
   margin-top: 20px;
 }
 
-button {
-  padding: 8px 16px;
+.dialog-buttons button {
+  padding: 8px 20px;
   border: none;
-  border-radius: 4px;
-  background: #4CAF50;
-  color: white;
+  border-radius: 20px;
   cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
 }
 
-button:hover {
-  background: #45a049;
+.dialog-buttons button:first-child {
+  background: #4CAF50;
+  color: white;
+}
+
+.dialog-buttons button.cancel {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.dialog-buttons button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+@media (max-width: 480px) {
+  .settings-dialog {
+    padding: 10px;
+  }
+
+  .settings-content {
+    padding: 15px;
+    width: 95%;
+  }
+
+  .form-group {
+    margin: 10px 0;
+  }
+
+  .form-group input {
+    width: 60px;
+    padding: 6px;
+  }
 }
