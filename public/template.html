@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>安静花园</title>
+    <script>
+        // 将所有样式内联到这里
+        const styles = `
+            /* 这里会被构建脚本替换为实际的样式内容 */
+            /* STYLES_PLACEHOLDER */
+        `;
+
+        // 将所有JS内联到这里
+        const appCode = `
+            /* 这里会被构建脚本替换为实际的JS内容 */
+            /* SCRIPT_PLACEHOLDER */
+        `;
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        // 添加内联样式
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = styles;
+        document.head.appendChild(styleSheet);
+
+        // 执行应用代码
+        eval(appCode);
+    </script>
+</body>
+</html>
