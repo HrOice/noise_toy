@@ -46,7 +46,7 @@ const App: React.FC = () => {
 
     useEffect(() => {
         if (decibel >= settingRef.current.alertThreshold) {
-            setSeconds(0);
+            // setSeconds(0);
             setAlert({
                 show: true,
                 message: '噪音太大了！请保持安静。'
