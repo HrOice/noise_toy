@@ -15,7 +15,8 @@ let plantIdCounter = 0;
 const generateId = () => `plant_${Date.now()}_${++plantIdCounter}`;
 
 const App: React.FC = () => {
-    const decibel = useAudioLevel();
+    const [isPaused, setIsPaused] = useState(false);
+    const decibel = useAudioLevel(isPaused);
     const [seconds, setSeconds] = useState(0);
     const [plants, setPlants] = useState<Plant[]>([]);
     const [alert, setAlert] = useState<AlertType>({ show: false, message: '' });
@@ -43,17 +44,19 @@ const App: React.FC = () => {
         }
     }, [plants, settings, isLoaded]);
 
-
     useEffect(() => {
+        if (decibel >= settingRef.current.maxDecibel) {
+            setSeconds(0);
+        }
         if (decibel >= settingRef.current.alertThreshold) {
-            // setSeconds(0);
             setAlert({
                 show: true,
                 message: '噪音太大了！请保持安静。'
             });
             setTimeout(() => setAlert({ show: false, message: '' }), 3000);
         } else {
-            if (!timerRef.current) {
+            if (!timerRef.current && !isPaused) {
+                console.log('start time')
                 timerRef.current = setInterval(() => {
                     setSeconds(prev => {
                         if (prev < settingRef.current.maxSeconds) {
@@ -64,13 +67,6 @@ const App: React.FC = () => {
                 }, CONFIG.TIMER.UPDATE_INTERVAL);
             }
         }
-
-        // 组件卸载时清理定时器
-        // return () => {
-        //   if (timerRef.current) {
-        //     clearInterval(timerRef.current);
-        //   }
-        // };
     }, [decibel, settings.maxSeconds, settings.alertThreshold]); // 添加依赖项
 
     const addPlant = () => {
@@ -114,15 +110,38 @@ const App: React.FC = () => {
             storageService.resetData();
             const data = storageService.getData();
             setPlants(data.plants);
-            // setSettings(data.settings);
-            // settingRef.current = data.settings
             setSeconds(0);
         }
+    };
+
+    const handlePlayPause = () => {
+        if (!isPaused) {
+            // 
+            if (timerRef.current) {
+                console.log('stop time')
+                clearInterval(timerRef.current);
+                timerRef.current = null;
+                // setSeconds(0);
+            }
+        }
+        console.log(isPaused ? "play": "stop")
+        setIsPaused(prev => {
+            if (!prev) { // 暂停
+                
+            }
+            return !prev;
+        });
     };
 
     return (
         <div className="app">
             <div className="header">
+                <button 
+                    onClick={handlePlayPause} 
+                    className="control-button"
+                >
+                    {isPaused ? '▶️' : '⏸️'}
+                </button>
                 <button onClick={() => setIsSettingsOpen(true)}>⚙️</button>
                 <button onClick={handleReset}>🔄</button>
             </div>
