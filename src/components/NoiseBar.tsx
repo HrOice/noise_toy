@@ -31,7 +31,7 @@ export const NoiseBar: React.FC<NoiseBarProps> = ({
       setPeaks(prev => prev.filter(p => p.id !== newPeak.id));
     }, 2000);
 
-    return () => clearTimeout(timer);
+    // return () => clearTimeout(timer);
   }, [decibel]);
 
   return (
@@ -40,6 +40,7 @@ export const NoiseBar: React.FC<NoiseBarProps> = ({
       {peaks.map(peak => (
         <div 
           key={peak.id}
+          id={peak.id.toString()}
           className={`noise-fill peak ${isWarning ? 'warning' : ''}`}
           style={{ 
             width: `${Math.min((peak.value / maxDecibel) * 100, 100)}%`
